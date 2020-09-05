@@ -1,0 +1,21 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.array-bar {
+    background-color: #2a9d8f;
+    width: 3px;
+    display: inline-block;
+    margin: 0 1px;
+}
+
+.array button {
+    margin: 5px;
+    box-shadow: 0 1px 1px 0;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+}

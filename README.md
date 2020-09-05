@@ -5,4 +5,4 @@ Website to visualize sorting and searching algorithms.
 - None yet
 
 ## Implemented Searching Algorithms:
-- None et
+- None yet
