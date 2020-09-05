@@ -1,9 +1,8 @@
 # Algorithm Visualizer
 Website to visualize sorting and searching algorithms.
 
-## Sorting Algorithms
-- Merge Sort
-- Bubble Sort
+## Implemented Sorting Algorithms:
+- None yet
 
-## Searching Algorithms
-- Dijkstra's Algorithm 
+## Implemented Searching Algorithms:
+- None et
