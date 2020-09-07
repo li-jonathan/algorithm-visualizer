@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/%7Balgorithm-visualizer%7D/static/css/main.e0e51990.chunk.css",
+    "main.js": "/%7Balgorithm-visualizer%7D/static/js/main.330f2727.chunk.js",
+    "main.js.map": "/%7Balgorithm-visualizer%7D/static/js/main.330f2727.chunk.js.map",
+    "runtime-main.js": "/%7Balgorithm-visualizer%7D/static/js/runtime-main.5b3257fb.js",
+    "runtime-main.js.map": "/%7Balgorithm-visualizer%7D/static/js/runtime-main.5b3257fb.js.map",
+    "static/js/2.0a7c0969.chunk.js": "/%7Balgorithm-visualizer%7D/static/js/2.0a7c0969.chunk.js",
+    "static/js/2.0a7c0969.chunk.js.map": "/%7Balgorithm-visualizer%7D/static/js/2.0a7c0969.chunk.js.map",
+    "index.html": "/%7Balgorithm-visualizer%7D/index.html",
+    "precache-manifest.3fa35f1fe0a60583e19091ef0e46785b.js": "/%7Balgorithm-visualizer%7D/precache-manifest.3fa35f1fe0a60583e19091ef0e46785b.js",
+    "service-worker.js": "/%7Balgorithm-visualizer%7D/service-worker.js",
+    "static/css/main.e0e51990.chunk.css.map": "/%7Balgorithm-visualizer%7D/static/css/main.e0e51990.chunk.css.map",
+    "static/js/2.0a7c0969.chunk.js.LICENSE.txt": "/%7Balgorithm-visualizer%7D/static/js/2.0a7c0969.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/%7Balgorithm-visualizer%7D/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5b3257fb.js",
+    "static/js/2.0a7c0969.chunk.js",
+    "static/css/main.e0e51990.chunk.css",
+    "static/js/main.330f2727.chunk.js"
+  ]
+}
