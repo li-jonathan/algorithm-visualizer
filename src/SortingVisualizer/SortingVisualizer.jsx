@@ -1,9 +1,10 @@
 import React from 'react';
 import './SortingVisualizer.css';
 
-const NUM_ARRAY_BARS = 10;
-const COLOR = '#2a9d8f';
-const ANIMATION_SPEED = 500;
+const NUM_ARRAY_BARS = 100;
+const PRIMARY_COLOR = '#2a9d8f';
+const COMPARING_COLOR = '#e9c46a';
+const ANIMATION_SPEED = 3;
 
 export default class SortingVisualizer extends React.Component {
 
@@ -21,7 +22,7 @@ export default class SortingVisualizer extends React.Component {
 
   bubbleSort() {
     // this.setState(bubbleSort(this.state.array));
-    const animations = bubbleSort(this.state.array);
+    const animations = getBubbleSortAnimations(this.state.array);
 
     for (let i = 0; i < animations.length; i++) {
       
@@ -33,15 +34,17 @@ export default class SortingVisualizer extends React.Component {
 
       if (change == 'colorChange') {
         setTimeout(() => {
-          barOneStyle.backgroundColor = 'blue';
-          barTwoStyle.backgroundColor = 'blue';
+          barOneStyle.backgroundColor = COMPARING_COLOR;
+          barTwoStyle.backgroundColor = COMPARING_COLOR;
         }, i * ANIMATION_SPEED);
-      } else if (change == 'noColorChange') {
+      }
+      if (change == 'noColorChange') {
         setTimeout(() => {
-          barOneStyle.backgroundColor = COLOR;
-          barTwoStyle.backgroundColor = COLOR;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = PRIMARY_COLOR;
         }, i * ANIMATION_SPEED);
-      } else if (change == 'heightChange') {
+      }
+      if (change == 'heightChange') {
         setTimeout(() => {
           barOneStyle.height = `${h1}px`;
           barTwoStyle.height = `${h2}px`;
@@ -65,7 +68,7 @@ export default class SortingVisualizer extends React.Component {
     return (
       <div className="array">
         {array.map((value, index) => (
-          <div className="array-bar" key={index} style={{backgroundColor: COLOR, height:`${value}px`,}}></div>
+          <div className="array-bar" key={index} style={{backgroundColor: PRIMARY_COLOR, height:`${value}px`,}}></div>
         ))}
         <div className="buttons">
           <button onClick={() => this.resetArray()}>Generate New Array</button>
@@ -89,7 +92,7 @@ function generateRandomInt() {
   return Math.floor(Math.random() * 500) + 10;
 }
 
-function bubbleSort(arr) {
+function getBubbleSortAnimations(arr) {
 
   const animations = [];
 
@@ -97,8 +100,8 @@ function bubbleSort(arr) {
   for (let i = 0; i < len - 1; i++) {
     for (let j = 0; j < len - i - 1; j++) {
       // push values we are comparing
-      animations.push(["colorChange", i, j, 0, 0]); // push once to change colors
-      animations.push(["noColorChange", i, j, 0, 0]); // push again to revert colors
+      animations.push(["colorChange", j, j+1, 0, 0]); // push once to change colors
+      animations.push(["noColorChange", j, j+1, 0, 0]); // push again to revert colors
       if (arr[j] > arr[j+1]) {
         let temp = arr[j];
         arr[j] = arr[j+1];
