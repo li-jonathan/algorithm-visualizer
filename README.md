@@ -1,7 +1,7 @@
 # Algorithm Visualizer
 Website to visualize sorting and searching algorithms.
 
-Click [here](https://www.google.com) to view website (use Google Chrome).
+Click [here](https://li-jonathan.github.io/algorithm-visualizer/) to view website (use Google Chrome).
 
 ## Implemented Sorting Algorithms:
 - Bubble Sort
