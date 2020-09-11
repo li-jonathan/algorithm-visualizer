@@ -5,6 +5,7 @@ Click [here](https://li-jonathan.github.io/algorithm-visualizer/) to view websit
 
 ## Implemented Sorting Algorithms:
 - Bubble Sort
+- Insertion Sort
 
 ## Implemented Searching Algorithms:
 - None yet...
