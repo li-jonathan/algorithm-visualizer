@@ -1,10 +1,10 @@
 import React from 'react';
 import './SortingVisualizer.css';
 
-const NUM_ARRAY_BARS = 15;
+const NUM_ARRAY_BARS = 50;
 const PRIMARY_COLOR = '#2a9d8f';
 const COMPARING_COLOR = '#e9c46a';
-const ANIMATION_SPEED = 200;
+const ANIMATION_SPEED = 50;
 
 export default class SortingVisualizer extends React.Component {
 
@@ -14,6 +14,7 @@ export default class SortingVisualizer extends React.Component {
     this.state = {
       array: [],
     };
+
   }
 
   componentDidMount() {
@@ -31,19 +32,19 @@ export default class SortingVisualizer extends React.Component {
       const barOneStyle = arrayBars[bar1Index].style;
       const barTwoStyle = arrayBars[bar2Index].style;
 
-      if (change == 'colorChange') {
+      if (change === 'colorChange') {
         setTimeout(() => {
           barOneStyle.backgroundColor = COMPARING_COLOR;
           barTwoStyle.backgroundColor = COMPARING_COLOR;
         }, i * ANIMATION_SPEED);
       }
-      if (change == 'noColorChange') {
+      if (change === 'noColorChange') {
         setTimeout(() => {
           barOneStyle.backgroundColor = PRIMARY_COLOR;
           barTwoStyle.backgroundColor = PRIMARY_COLOR;
         }, i * ANIMATION_SPEED);
       }
-      if (change == 'heightChange') {
+      if (change === 'heightChange') {
         setTimeout(() => {
           barOneStyle.height = `${height1}px`;
           barTwoStyle.height = `${height2}px`;
@@ -54,6 +55,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   insertionSort() {
+
     const animations = getInsertionSortAnimations(this.state.array);
 
     for (let i = 0; i < animations.length; i++) {
@@ -64,19 +66,19 @@ export default class SortingVisualizer extends React.Component {
       const barOneStyle = arrayBars[bar1Index].style;
       const barTwoStyle = arrayBars[bar2Index].style;
 
-      if (change == 'colorChange') {
+      if (change === 'colorChange') {
         setTimeout(() => {
           barOneStyle.backgroundColor = COMPARING_COLOR;
           barTwoStyle.backgroundColor = COMPARING_COLOR;
         }, i * ANIMATION_SPEED);
       }
-      if (change == 'noColorChange') {
+      if (change === 'noColorChange') {
         setTimeout(() => {
           barOneStyle.backgroundColor = PRIMARY_COLOR;
           barTwoStyle.backgroundColor = PRIMARY_COLOR;
         }, i * ANIMATION_SPEED);
       }
-      if (change == 'heightChange') {
+      if (change === 'heightChange') {
         setTimeout(() => {
           barOneStyle.height = `${height1}px`;
           barTwoStyle.height = `${height2}px`;
@@ -84,14 +86,51 @@ export default class SortingVisualizer extends React.Component {
       }
     }
   }
+
+  selectionSort() {
+
+    const animations = getSelectionSortAnimations(this.state.array);
+
+    for (let i = 0; i < animations.length; i++) {
+
+      const arrayBars = document.getElementsByClassName('array-bar');
+
+      const [change, bar1Index, bar2Index, height1, height2] = animations[i];
+      const barOneStyle = arrayBars[bar1Index].style;
+      const barTwoStyle = arrayBars[bar2Index].style;
+
+      if (change === 'colorChange') {
+        setTimeout(() => {
+          barOneStyle.backgroundColor = COMPARING_COLOR;
+          barTwoStyle.backgroundColor = COMPARING_COLOR;
+        }, i * ANIMATION_SPEED);
+      }
+      if (change === 'noColorChange') {
+        setTimeout(() => {
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = PRIMARY_COLOR;
+        }, i * ANIMATION_SPEED);
+      }
+      if (change === 'heightChange') {
+        setTimeout(() => {
+          barOneStyle.height = `${height1}px`;
+          barTwoStyle.height = `${height2}px`;
+        }, i * ANIMATION_SPEED);
+      }
+    }
+
+  }
+
   
   resetArray() {
     const array = [];
     for (let i = 0; i < NUM_ARRAY_BARS; i++) {
-        array.push(generateRandomInt());
+      array.push(generateRandomInt());
     }
-    this.setState({array});
+
+    this.setState({array: array});
   }
+
 
   render() {
     const {array} = this.state;
@@ -102,12 +141,11 @@ export default class SortingVisualizer extends React.Component {
           <div className="array-bar" key={index} style={{backgroundColor: PRIMARY_COLOR, height:`${value}px`,}}></div>
         ))}
         <div className="buttons">
-          <button onClick={() => this.resetArray()}>Generate New Array</button>
-          <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-          <button onClick={() => alert("Algorithm not implemented yet...")}>Quick Sort</button>
-          <button onClick={() => alert("Algorithm not implemented yet...")}>Selection Sort</button>
-          <button onClick={() => this.insertionSort()}>Insertion Sort</button>
-          <button onClick={() => alert("Algorithm not implemented yet...")}>Merge Sort</button>
+          <button className="generate" onClick={() => this.resetArray()}>Generate New Array</button>
+          <button className="bubble" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+          <button className="insertion" onClick={() => this.insertionSort()}>Insertion Sort</button>
+          <button className="selection" onClick={() => this.selectionSort()}>Selection Sort</button>
+          <button className="quick" onClick={() => alert("Algorithm not implemented yet...")}>Quick Sort</button>
         </div>
       </div>
     );
@@ -150,24 +188,42 @@ function getInsertionSortAnimations(arr) {
   for (let i = 1; i < len; ++i) { 
     const key = arr[i]; 
     let j = i - 1; 
-
-    /* Move elements of arr[0..i-1], that are 
-       greater than key, to one position ahead 
-       of their current position */
-    
-    while (j >= 0 && arr[j] > key) { 
-
-      animations.push(["colorChange", j, j+1, 0, 0]);
-      animations.push(["noColorChange", j, j+1, 0, 0]);
+       
+    animations.push(["colorChange", j, i, 0, 0]);
+    animations.push(["noColorChange", j, i, 0, 0]);
+    while (j >= 0 && arr[j] > key) {
+      animations.push(["colorChange", j+1, j, 0, 0]);
+      animations.push(["noColorChange", j+1, j, 0, 0]);
+      animations.push(["heightChange", j+1, j, arr[j], key])
       arr[j + 1] = arr[j];
-      animations.push(["heightChange", j, j+1, key, arr[j+1]]);
       j = j - 1; 
     } 
 
-    arr[j + 1] = key; 
+    arr[j + 1] = key;
+    animations.push(["heightChange", j+1, i, key, arr[i]])
   } 
   return animations;
 }
 
+function getSelectionSortAnimations(arr) {
+  const animations = [];
+  const len = arr.length; 
+
+  for (let i = 0; i < len - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < len; j++) {
+      animations.push(["colorChange", j, min, 0, 0]);
+      animations.push(["noColorChange", j, min, 0, 0]);
+      if (arr[j] < arr[min]) {
+        min = j;
+      }
+    }
+    let temp = arr[min];
+    arr[min] = arr[i];
+    arr[i] = temp;
+    animations.push(["heightChange", min, i, arr[min], arr[i]])
+  }
+  return animations;
+}
 
 
