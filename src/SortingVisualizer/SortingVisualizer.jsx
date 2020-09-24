@@ -21,9 +21,7 @@ export default class SortingVisualizer extends React.Component {
     this.resetArray();
   }
 
-  bubbleSort() {
-    const animations = getBubbleSortAnimations(this.state.array);
-
+  sort(animations) {
     for (let i = 0; i < animations.length; i++) {
       
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -51,74 +49,18 @@ export default class SortingVisualizer extends React.Component {
         }, i * ANIMATION_SPEED);
       }
     }
+  }
 
+  bubbleSort() {
+    this.sort(getBubbleSortAnimations(this.state.array));
   }
 
   insertionSort() {
-
-    const animations = getInsertionSortAnimations(this.state.array);
-
-    for (let i = 0; i < animations.length; i++) {
-
-      const arrayBars = document.getElementsByClassName('array-bar');
-
-      const [change, bar1Index, bar2Index, height1, height2] = animations[i];
-      const barOneStyle = arrayBars[bar1Index].style;
-      const barTwoStyle = arrayBars[bar2Index].style;
-
-      if (change === 'colorChange') {
-        setTimeout(() => {
-          barOneStyle.backgroundColor = COMPARING_COLOR;
-          barTwoStyle.backgroundColor = COMPARING_COLOR;
-        }, i * ANIMATION_SPEED);
-      }
-      if (change === 'noColorChange') {
-        setTimeout(() => {
-          barOneStyle.backgroundColor = PRIMARY_COLOR;
-          barTwoStyle.backgroundColor = PRIMARY_COLOR;
-        }, i * ANIMATION_SPEED);
-      }
-      if (change === 'heightChange') {
-        setTimeout(() => {
-          barOneStyle.height = `${height1}px`;
-          barTwoStyle.height = `${height2}px`;
-        }, i * ANIMATION_SPEED);
-      }
-    }
+    this.sort(getInsertionSortAnimations(this.state.array));
   }
 
   selectionSort() {
-
-    const animations = getSelectionSortAnimations(this.state.array);
-
-    for (let i = 0; i < animations.length; i++) {
-
-      const arrayBars = document.getElementsByClassName('array-bar');
-
-      const [change, bar1Index, bar2Index, height1, height2] = animations[i];
-      const barOneStyle = arrayBars[bar1Index].style;
-      const barTwoStyle = arrayBars[bar2Index].style;
-
-      if (change === 'colorChange') {
-        setTimeout(() => {
-          barOneStyle.backgroundColor = COMPARING_COLOR;
-          barTwoStyle.backgroundColor = COMPARING_COLOR;
-        }, i * ANIMATION_SPEED);
-      }
-      if (change === 'noColorChange') {
-        setTimeout(() => {
-          barOneStyle.backgroundColor = PRIMARY_COLOR;
-          barTwoStyle.backgroundColor = PRIMARY_COLOR;
-        }, i * ANIMATION_SPEED);
-      }
-      if (change === 'heightChange') {
-        setTimeout(() => {
-          barOneStyle.height = `${height1}px`;
-          barTwoStyle.height = `${height2}px`;
-        }, i * ANIMATION_SPEED);
-      }
-    }
-
+    this.sort(getSelectionSortAnimations(this.state.array));
   }
 
   
